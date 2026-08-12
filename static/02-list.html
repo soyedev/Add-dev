@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>도서 목록</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 700px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>도서 목록</h1>
+
+<button id="loadBtn">목록 불러오기</button>
+
+<table id="bookTable">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>도서명</th>
+            <th>저자</th>
+            <th>출판연도</th>
+        </tr>
+    </thead>
+    <tbody id="result">
+    </tbody>
+</table>
+
+<script>
+document.getElementById("loadBtn").addEventListener("click", async () => {
+
+    const books = await (await fetch("/books")).json();
+
+    const tbody = document.getElementById("result");
+
+    // 기존 데이터 삭제
+    tbody.innerHTML = "";
+
+    // 데이터 출력
+    for (const b of books) {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${b.id}</td>
+            <td>${b.title}</td>
+            <td>${b.author}</td>
+            <td>${b.year}</td>
+        `;
+
+        tbody.appendChild(tr);
+    }
+
+});
+</script>
+
+</body>
+</html>
