@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>도서 등록 + 검색</title>
+</head>
+<body>
+
+<h1>도서 등록</h1>
+
+<input id="title" placeholder="제목">
+<input id="author" placeholder="저자">
+<input id="year" type="number" placeholder="연도">
+
+<button id="saveBtn">등록</button>
+
+<p id="result"></p>
+
+<hr>
+
+<h2>도서 검색</h2>
+
+<input id="keyword" placeholder="검색어">
+<button id="searchBtn">검색</button>
+
+<ul id="searchResult"></ul>
+
+<script>
+
+// 등록
+document.getElementById("saveBtn").addEventListener("click", async () => {
+
+    const payload = {
+        title: document.getElementById("title").value,
+        author: document.getElementById("author").value,
+        year: Number(document.getElementById("year").value)
+    };
+
+    const res = await fetch("/books", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    document.getElementById("result").textContent =
+        "상태 " + res.status + " / " + JSON.stringify(data);
+
+});
+
+
+// 검색
+document.getElementById("searchBtn").addEventListener("click", async () => {
+
+    const keyword = document.getElementById("keyword").value;
+
+    const books = await (
+        await fetch("/books/search?keyword=" + encodeURIComponent(keyword))
+    ).json();
+
+    const ul = document.getElementById("searchResult");
+
+    ul.innerHTML = "";
+
+    for (const b of books) {
+
+        const li = document.createElement("li");
+
+        li.textContent =
+            b.title + " - " + b.author + " (" + b.year + ")";
+
+        ul.appendChild(li);
+    }
+
+});
+
+</script>
+
+</body>
+</html>
