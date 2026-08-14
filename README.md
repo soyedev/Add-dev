@@ -7,6 +7,8 @@ FastAPI와 HTML, JavaScript(Fetch API)를 이용하여 구현한 도서 관리 �
 REST API를 활용하여 도서 조회, 검색, 등록, 검증 기능을 구현하였으며,
 HTML 페이지와 Fetch API를 통해 서버와 통신합니다.
 
+또한 Open-Meteo API와 Google Books API를 연동하여 외부 API 호출과 비동기(Async) 처리 했습니다.
+
 ---
 
 ## 구현 기능
@@ -35,6 +37,12 @@ HTML 페이지와 Fetch API를 통해 서버와 통신합니다.
 - 등록 버튼 중복 클릭 방지
 - 등록 화면과 검색 화면 통합
 
+### 외부 API 연동
+- Open-Meteo API를 이용한 현재 날씨 조회
+- Google Books API를 이용한 도서 검색
+- HTTPX AsyncClient를 이용한 비동기 API 호출
+- 환경 변수(.env)를 이용한 API Key 관리
+
 ---
 
 ## 사용 기술
@@ -42,6 +50,9 @@ HTML 페이지와 Fetch API를 통해 서버와 통신합니다.
 - Python
 - FastAPI
 - Pydantic
+- HTTPX
+- Requests
+- python-dotenv
 - HTML5
 - JavaScript (Fetch API)
 
@@ -82,3 +93,5 @@ http://127.0.0.1:8000/docs
 - 11. 태그 및 출판사 등록
 - 12. 상태 코드 통합 처리
 - 13. 등록 + 검색 통합 화면
+- 14. 현재 날씨 조회(Open-Meteo API)
+- 15. Google Books API 도서 검색
