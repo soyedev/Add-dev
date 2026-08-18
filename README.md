@@ -100,7 +100,6 @@ http://127.0.0.1:8000/docs
 ---
 
 ## 주요 API
-<<<<<<< HEAD
 
 | Method | Endpoint | 설명 |
 |--------|----------|------|
@@ -116,20 +115,3 @@ http://127.0.0.1:8000/docs
 | POST | `/books/from-external` | 외부 도서 등록 |
 
 ---
-
-
-| Method | Endpoint | 설명 |
-|--------|----------|------|
-| GET | `/health` | 서버 상태 확인 |
-| GET | `/books` | 도서 목록 조회 |
-| GET | `/books/{book_id}` | 도서 단건 조회 |
-| GET | `/books/search` | 도서 검색 |
-| GET | `/books/filter` | 저자 필터 및 정렬 |
-| GET | `/books/page` | 페이지네이션 |
-| POST | `/books` | 도서 등록 |
-| GET | `/weather` | 현재 날씨 조회 |
-| GET | `/books/external` | Google Books 검색 |
-| POST | `/books/from-external` | 외부 도서 등록 |
-
----
-
